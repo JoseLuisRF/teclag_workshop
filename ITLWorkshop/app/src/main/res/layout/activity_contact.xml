@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <ImageView
+            android:background="#363636"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:id="@+id/ivContact"
+            android:layout_weight="0.38" />
+        <Button
+            android:id="@+id/btnTakePhoto"
+            android:text="@string/caption_take_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etContactName"
+            android:hint="@string/hint_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etBriefMesage"
+            android:layout_marginTop="10sp"
+            android:hint="@string/hint_brief_message"
+            android:inputType="textMultiLine"
+            android:maxLines="10"
+            android:gravity="left|top"
+            android:layout_width="match_parent"
+            android:layout_height="100sp" />
+        <EditText
+            android:id="@+id/etContactPhone"
+            android:hint="@string/hint_phone"
+            android:layout_marginTop="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btnSaveContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/caption_save"/>
+    </LinearLayout>
+</ScrollView>
