@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import org.json.JSONObject;
 
+import jlrf.itl.gsa.listviewexample.ui.CountriesAdapter;
 import jlrf.itl.gsa.listviewexample.ws.CountriesWS;
 
 /**
@@ -21,11 +22,16 @@ public class CountriesActivity extends AppCompatActivity{
     private ListView lvCountries;
     private Context context;
     private ProgressDialog progressDialog;
+    private CountriesAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         lvCountries = (ListView)findViewById(R.id.lvCountries);
         context = this;
+
+        AsyncGetCountries asyncGetCountries = new AsyncGetCountries();
+        asyncGetCountries.execute();
 
     }
 
@@ -70,6 +76,7 @@ public class CountriesActivity extends AppCompatActivity{
             }
             else if(o instanceof  JSONObject){
                 JSONObject jsonObject = (JSONObject)o;
+                adapter = new CountriesAdapter(context);
 
                 Log.i(TAG, "jsonObject::" + jsonObject.toString());
             }
