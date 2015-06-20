@@ -19,13 +19,11 @@ public class WebService {
     protected HttpURLConnection urlConnection = null;
 
     public WebService(){
-
     }
-    protected String wsGet(String methodName) throws  Exception{
 
+    protected String wsGet(String methodName) throws  Exception{
         return wsGet(methodName, null);
     }
-
 
     protected String wsGet(String methodName, Map<String, String> params) throws Exception{
 
@@ -59,6 +57,8 @@ public class WebService {
             inputStream = urlConnection.getInputStream();
 
             if (inputStream == null) {
+                if(urlConnection != null)
+                    urlConnection.disconnect();
                 // Nothing to do.
                 return null;
             }
@@ -72,16 +72,20 @@ public class WebService {
                 buffer.append(line + "\n");
             }
             if(buffer == null){
+                if(urlConnection != null)
+                    urlConnection.disconnect();
                 // Stream was empty.  No point in parsing.
                 return null;
             }
             if (buffer.length() == 0) {
+                if(urlConnection != null)
+                    urlConnection.disconnect();
                 // Stream was empty.  No point in parsing.
                 return null;
             }
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
+
+            urlConnection.disconnect();
+
             if (reader != null) {
                 reader.close();
             }

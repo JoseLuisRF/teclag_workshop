@@ -15,10 +15,13 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import jlrf.itl.gsa.listviewexample.db.MyContactsCmd;
 import jlrf.itl.gsa.listviewexample.model.MyContact;
+import jlrf.itl.gsa.listviewexample.ws.CountriesWS;
 
 
 public class MainActivity extends ActionBarActivity
@@ -86,6 +89,11 @@ public class MainActivity extends ActionBarActivity
             return true;
         }
 
+        if(id == R.id.action_test_ws){
+            AsyncGetCountries asyncGetCountries = new AsyncGetCountries();
+            asyncGetCountries.execute();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -98,6 +106,41 @@ public class MainActivity extends ActionBarActivity
     }
 
 
+    private  class AsyncGetCountries extends  AsyncTask<Object, Object, Object>{
+        private final String TAG  = AsyncGetCountries.class.getSimpleName();
+        @Override
+        protected Object doInBackground(Object... objects) {
+            CountriesWS ws = new CountriesWS();
+            try {
+                JSONObject jsonObject = ws.getCountries();
+                Log.i(TAG, "jsonObject.length()::" + jsonObject.length());
+                return jsonObject;
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+                return ex;
+            }
+
+
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            if(o instanceof  Exception){
+                ((Exception)o).printStackTrace();
+                Toast.makeText(MainActivity.this,
+                        "Ohh an error has occured",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else if(o instanceof  JSONObject){
+                JSONObject jsonObject = (JSONObject)o;
+
+                Log.i(TAG, "jsonObject::" + jsonObject.toString());
+            }
+
+        }
+    }
 
     public class AsyncQueryContacts extends AsyncTask<Object, Object, Object >{
 
