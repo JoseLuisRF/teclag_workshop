@@ -2,6 +2,7 @@ package jlrf.itl.gsa.listviewexample;
 
 import android.app.LoaderManager;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -90,9 +91,8 @@ public class MainActivity extends ActionBarActivity
         }
 
         if(id == R.id.action_test_ws){
-            AsyncGetCountries asyncGetCountries = new AsyncGetCountries();
-            asyncGetCountries.execute();
-            return true;
+            Intent intent = new Intent(this, CountriesActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -106,41 +106,7 @@ public class MainActivity extends ActionBarActivity
     }
 
 
-    private  class AsyncGetCountries extends  AsyncTask<Object, Object, Object>{
-        private final String TAG  = AsyncGetCountries.class.getSimpleName();
-        @Override
-        protected Object doInBackground(Object... objects) {
-            CountriesWS ws = new CountriesWS();
-            try {
-                JSONObject jsonObject = ws.getCountries();
-                Log.i(TAG, "jsonObject.length()::" + jsonObject.length());
-                return jsonObject;
-            }
-            catch (Exception ex)
-            {
-                ex.printStackTrace();
-                return ex;
-            }
 
-
-        }
-
-        @Override
-        protected void onPostExecute(Object o) {
-            if(o instanceof  Exception){
-                ((Exception)o).printStackTrace();
-                Toast.makeText(MainActivity.this,
-                        "Ohh an error has occured",
-                        Toast.LENGTH_SHORT).show();
-            }
-            else if(o instanceof  JSONObject){
-                JSONObject jsonObject = (JSONObject)o;
-
-                Log.i(TAG, "jsonObject::" + jsonObject.toString());
-            }
-
-        }
-    }
 
     public class AsyncQueryContacts extends AsyncTask<Object, Object, Object >{
 
