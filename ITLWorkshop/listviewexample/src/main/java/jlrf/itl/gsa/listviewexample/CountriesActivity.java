@@ -9,8 +9,10 @@ import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import jlrf.itl.gsa.listviewexample.model.Country;
 import jlrf.itl.gsa.listviewexample.ui.CountriesAdapter;
 import jlrf.itl.gsa.listviewexample.ws.CountriesWS;
 
@@ -27,6 +29,7 @@ public class CountriesActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.countries_activity);
         lvCountries = (ListView)findViewById(R.id.lvCountries);
         context = this;
 
@@ -71,14 +74,26 @@ public class CountriesActivity extends AppCompatActivity{
             if(o instanceof  Exception){
                 ((Exception)o).printStackTrace();
                 Toast.makeText(context,
-                        "Ohh an error has occured",
+                        "Ohh an error has occurred",
                         Toast.LENGTH_SHORT).show();
             }
             else if(o instanceof  JSONObject){
                 JSONObject jsonObject = (JSONObject)o;
                 adapter = new CountriesAdapter(context);
+                try {
+                    JSONArray jsonArray = jsonObject.getJSONObject("RestResponse").getJSONArray("result");
+                    Log.i(TAG, "jsonArray.length()::" + jsonArray.length());
 
-                Log.i(TAG, "jsonObject::" + jsonObject.toString());
+                    adapter.clear();
+                    for (int i = 0; i< jsonArray.length(); i++) {
+                        adapter.add(Country.parse(jsonArray.getJSONObject(i)));
+                    }
+                    lvCountries.setAdapter(adapter);
+                }
+                catch (Exception ex){
+                    Toast.makeText(context, "oops an error has occurred",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
 
         }
