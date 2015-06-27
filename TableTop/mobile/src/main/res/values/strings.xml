@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">TableTop</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="explanation">NFC is not enabled</string>
+    <string name="name_wc">W.C.</string>
+    <string name="name_cafeteria">Cafeteria</string>
+    <string name="label_floor_3">3rd Floor</string>
+    <string name="label_floor_4">4th Floor</string>
+    <string name="label_floor_5">5th Floor</string>
+    <string name="label_floor_6">6th Floor</string>
+    <string name="label_floor_7">7th Floor</string>
+    <string name="toilets_available">There are toilets available</string>
+    <string name="toilets_unavailable">No toilets available</string>
+    <string name="btn_notify_me">Notify me when available</string>
+</resources>

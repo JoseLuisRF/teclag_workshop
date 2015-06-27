@@ -1,0 +1,74 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0.025in"
+
+
+    android:gravity="center"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+
+        android:layout_height="2.14in"
+        android:layout_width="2.14in"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_margin="0.03in"
+        android:gravity="center"
+        android:clickable="true"
+        android:onClick="onBtnCafeteria_Click"
+        android:background="@drawable/button_shape2">
+        <ImageView
+            android:src="@drawable/cutlery"
+            android:paddingTop="0.035in"
+            android:layout_width="1in"
+            android:layout_height="1in" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="@dimen/abc_text_size_title_material_toolbar"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:text="@string/name_cafeteria"
+            android:textColor="#FFFFFF"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+
+        android:layout_height="2.14in"
+        android:layout_width="2.14in"
+        android:layout_weight="1"
+        android:layout_margin="0.03in"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:clickable="true"
+        android:onClick="onBtnWc_Click"
+        android:background="@drawable/button_shape"
+        >
+        <ImageView
+            android:src="@drawable/paper"
+            android:paddingTop="0.035in"
+            android:layout_width="1in"
+            android:layout_height="1in" />
+        <TextView
+            android:textColor="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="@dimen/abc_text_size_title_material_toolbar"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:text="@string/name_wc"/>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

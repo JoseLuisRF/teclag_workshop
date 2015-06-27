@@ -15,11 +15,13 @@
         tools:text="MX"
         android:id="@+id/tvAlpha2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="#ffe8893d"/>
     <TextView
         tools:text="es-MX"
         android:id="@+id/tvAlpha3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="#ff3aa4e8"/>
 
 </LinearLayout>
